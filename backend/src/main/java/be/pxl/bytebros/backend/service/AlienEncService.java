@@ -39,14 +39,16 @@ public class AlienEncService {
         return str.toString().toUpperCase();
     }
 
-    public String convertStringToHexDec(ConvertStringToHexDecRequest convertStringToHexDecRequest){
+    public String convertStringToHexDec(ConvertStringToHexDecRequest convertStringToHexDecRequest) {
         String stringCode = convertStringToHexDecRequest.stringCode();
-        List<String> hexDecList = new ArrayList<>();
+        StringBuilder hexDecBuilder = new StringBuilder();
 
-        for (int i = 0; i < stringCode.length(); i++){
-            hexDecList.add(stringCode.substring(i, Math.min(stringCode.length(), i + 2)));
+        for (char c : stringCode.toCharArray()) {
+            hexDecBuilder.append(String.format("%02x", (int) c));
+            hexDecBuilder.append(" ");
         }
-        return hexDecList.toString();
+
+        return hexDecBuilder.toString();
     }
 
     public String decodeBase64ToString(DecodeBase64ToStringRequest decodeBase64ToStringRequest){

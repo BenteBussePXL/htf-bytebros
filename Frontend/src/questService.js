@@ -7,6 +7,8 @@ const apiClient = axios.create({
   },
 });
 
+
+
 // Helper function to wait for a given time
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -17,12 +19,12 @@ export default {
 
     for (let passcode = 1458; passcode <= 9999; passcode++) {
 
-      const paddedPasscode = passcode.toString().padStart(4, '0'); 
+      const paddedPasscode = passcode.toString().padStart(4, '0');
       try {
-       
+
         const response = await apiClient.post(endpoint, null,{
           params: {
-            result: paddedPasscode,  
+            result: paddedPasscode,
           },
         });
 
@@ -41,7 +43,7 @@ export default {
         }
       }
 
- 
+
     }
 
     console.error('Could not brute force the passcode.');

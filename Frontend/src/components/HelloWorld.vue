@@ -13,10 +13,11 @@
       height="150"
     />
     <div>
-      <h1 class="green">Hack the future terminal</h1>
+      <h1 class="green">Collide Space Center terminal</h1>
     <h3>
       <p>Destroy the aliens with commands</p>
-      <p>enter "help" for more information</p>
+      <p>Enter "help" for more information</p>
+      <p>Made by ByteBros</p>
     </h3>
   </div>
   </div>

@@ -18,6 +18,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useCommandStore } from '../store/CommandStore';
+import bruteForceQuest from '../questService';
 
 const store = useCommandStore();
 
@@ -39,9 +40,9 @@ const commandOutputs = {
       - decodeBase64 <Base64>: Decodes Base64 to text
       - stringToHexDec <text>: Converts a string to Hexadecimal
       - decodeCaesar <text>: Decodes the given text with Caesar Cypher
-            -s: sets the shift of the Caesar Cypher
+      \t-s: sets the shift of the Caesar Cypher
       - isDisarium <input>: Checks if input is a disarium
-      - perfectnumber <number> <nth>: checks if input is a perfect number
+      - perfectNumber <number> <nth>: checks if input is a perfect number
       - getDays <month> <year>: gets the first and last day of the month
       - checkString <string>: checks if the string is ordered alphabetically
     `,
@@ -65,7 +66,7 @@ const runMultiLineCommand = async (lines) => {
             text: lines[i].text,
             output: lines[i].output
         });
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 750));
     }
 
 
@@ -301,7 +302,6 @@ const onEnterPress = async () => {
     }
 `
             }, { text: '', output: "Running process..." },
-            { text: '', output: "The first and last day are" },
             { text: '', output: decoded }
         ];
 
@@ -334,12 +334,13 @@ const onEnterPress = async () => {
     }
 `
             }, { text: '', output: "Running process..." },
-            { text: '', output: "Is the string in a correct" },
+            { text: '', output: "Is the string in a correct format" },
             { text: '', output: decoded }
         ];
 
         await runMultiLineCommand(backupLines);
     }
+
 
     else if (enteredCommand === 'clear') {
         commands.value = []; // Clear all outputs
