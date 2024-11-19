@@ -45,12 +45,11 @@ h3 {
 
 }
 
-
-p, h1, h2, h3, h4, h5, h6{  
+p, h1, h2, h3, h4, h5, h6{
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
+  font-size: 1.8rem;
 }
-
 
 </style>
