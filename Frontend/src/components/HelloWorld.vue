@@ -1,40 +1,52 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+
+    <img
+      id="app-logo"
+      alt="Vue logo"
+      class="logo"
+      src="./../assets/logo.svg"
+      width="150"
+      height="150"
+    />
+    <div>
+      <h1 class="green">Hack the future terminal</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      <p>Destroy the aliens with commands</p>
+      <p>enter "help" for more information</p>
     </h3>
+  </div>
   </div>
 </template>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
+.greetings {
+  margin-top: 75px;
+  margin-left: 50px;
+  display: flex;
+  align-items: center; /* Align vertically */
+  gap: 20px; /* Optional: Adjust the space between the elements */
 }
 
-h3 {
-  font-size: 1.2rem;
+.green {
+  color: green;
 }
 
-.greetings h1,
-.greetings h3 {
-  text-align: center;
+
+.greetings h1{
+  font-size: 3rem;
+
 }
 
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+
+p, h1, h2, h3, h4, h5, h6{  
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
 }
+
+
 </style>
