@@ -58,7 +58,7 @@ export const useCommandStore = defineStore('command', {
         async decodeMorse(morseCode) {
             try {
                 const response = await axios.post('/command/morse', { morseCode })
-                this.lastResponse = response.data
+                //this.lastResponse = response.data
                 return response.data
             } catch (error) {
                 this.error = error

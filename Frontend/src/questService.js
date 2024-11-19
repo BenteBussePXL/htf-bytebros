@@ -17,12 +17,12 @@ export default {
 
     for (let passcode = 1458; passcode <= 9999; passcode++) {
 
-      const paddedPasscode = passcode.toString().padStart(4, '0'); // Ensure it's 4 digits
+      const paddedPasscode = passcode.toString().padStart(4, '0'); 
       try {
-        // Send passcode as a query parameter
+       
         const response = await apiClient.post(endpoint, null,{
           params: {
-            result: paddedPasscode,  // Pass the current passcode as a query parameter
+            result: paddedPasscode,  
           },
         });
 

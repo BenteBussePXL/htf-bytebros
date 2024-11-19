@@ -32,7 +32,11 @@
 }
 
 .green {
-  color: green;
+  color: limegreen;
+}
+
+h3 {
+  color: grey;
 }
 
 
