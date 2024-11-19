@@ -1,16 +1,21 @@
 package be.pxl.bytebros.backend.service;
 
+import be.pxl.bytebros.backend.controller.data.DisariumNumberRequest;
+import be.pxl.bytebros.backend.controller.data.PerfectNumberRequest;
+import org.springframework.stereotype.Service;
+
+@Service
 public class HabConService {
-    public String isNumberADisariumNumberYesOrNo(){ //correct
-        int num = 598;
-        int copy = num, d = 0, sum = 0;
-        String s = Integer.toString(num);
-        int len = s.length();
+    public String isNumberADisariumNumberYesOrNo(DisariumNumberRequest disariumNumberRequest){
+        int num = disariumNumberRequest.number();
+        int copy = num, digit, sum = 0;
+        String numInString = Integer.toString(num);
+        int len = numInString.length();
 
         while(copy>0)
         {
-            d = copy % 10;
-            sum = sum + (int)Math.pow(d,len);
+            digit = copy % 10;
+            sum = sum + (int)Math.pow(digit,len);
             len--;
             copy = copy / 10;
         }
@@ -21,24 +26,20 @@ public class HabConService {
             return "N";
     }
 
-    public static boolean isPerfect(int number) {
+    public boolean isPerfect(int number) {
         int sum = 0;
-        // Calculate sum of divisors
         for (int i = 1; i < number; i++) {
             if (number % i == 0) {
                 sum += i;
             }
         }
-        // Check if sum of divisors is equal to the number
         return sum == number;
     }
 
-    // Method to find the nth perfect number
-    public static int nthPerfectNumber() {
-        int nth = 1;
+    public int nthPerfectNumber(PerfectNumberRequest perfectNumberRequest) {
+        int num = perfectNumberRequest.num();
+        int nth = perfectNumberRequest.nth();
         int count = 0;
-        int num = 1;
-        // Loop to find nth perfect number
         while (true) {
             if (isPerfect(num)) {
                 count++;

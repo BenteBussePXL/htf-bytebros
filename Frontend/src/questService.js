@@ -14,11 +14,11 @@ export default {
   async bruteForceQuest() {
     const endpoint = '/use/3923f09b-8bc2-4147-9c50-81ec8be12b95';
 
-    for (let passcode = 0; passcode <= 9999; passcode++) {
+    for (let passcode = 7919; passcode <= 9999; passcode++) {
       const paddedPasscode = passcode.toString().padStart(4, '0'); // Ensure it's 4 digits
       try {
         // Send passcode as a query parameter
-        const response = await apiClient.post(endpoint, {
+        const response = await apiClient.post(endpoint, null, {
           params: {
             result: paddedPasscode,  // Pass the current passcode as a query parameter
           },
