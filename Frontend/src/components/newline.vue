@@ -39,12 +39,12 @@ const commandOutputs = {
       - decodeMorse <Code>: Decodes the morse code to text
       - decodeBase64 <Base64>: Decodes Base64 to text
       - stringToHexDec <text>: Converts a string to Hexadecimal
+      - checkString <string>: checks if the string is ordered alphabetically
       - decodeCaesar <text>: Decodes the given text with Caesar Cypher
-      \t-s: sets the shift of the Caesar Cypher
+      -s: sets the shift of the Caesar Cypher
       - isDisarium <input>: Checks if input is a disarium
       - perfectNumber <number> <nth>: checks if input is a perfect number
       - getDays <month> <year>: gets the first and last day of the month
-      - checkString <string>: checks if the string is ordered alphabetically
     `,
     status: "System is operational. No issues detected.",
     exit: "Exiting the shell... Goodbye!",
@@ -286,7 +286,7 @@ const onEnterPress = async () => {
             { text: `${label} ${enteredCommand}`, output: "" },
             { text: '', output: "The code i will be using" },
             {
-                text: '', output: `     public int nthPerfectNumber(PerfectNumberRequest perfectNumberRequest) {
+                text: '', output: `public int nthPerfectNumber(PerfectNumberRequest perfectNumberRequest) {
         int num = perfectNumberRequest.num();
         int nth = perfectNumberRequest.nth();
         int count = 0;
@@ -299,6 +299,16 @@ const onEnterPress = async () => {
             }
             num++;
         }
+    }
+
+    public boolean isPerfect(int number) {
+        int sum = 0;
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum += i;
+            }
+        }
+        return sum == number;
     }
 `
             }, { text: '', output: "Running process..." },
