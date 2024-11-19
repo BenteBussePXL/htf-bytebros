@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.7.7",
     "htf-component": "github:CollideNV/htf-component",
+    "pinia": "^2.2.6",
     "vue": "^3.2.41"
   },
   "devDependencies": {
