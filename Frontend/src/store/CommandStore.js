@@ -47,7 +47,7 @@ export const useCommandStore = defineStore('command', {
         async decryptCaesarCipher(shift, text) {
             try {
                 const response = await axios.post(`${url}/command/caesar`, { shift, text })
-                return response.data
+                return  response.data
             } catch (error) {
                 this.error = error
                 throw error
@@ -56,7 +56,7 @@ export const useCommandStore = defineStore('command', {
         async decodeMorse(morseCode) {
             try {
                 const response = await axios.post(`${url}/command/morse`, { morseCode })
-                return response.data
+                return  response.data
             } catch (error) {
                 this.error = error
                 throw error
