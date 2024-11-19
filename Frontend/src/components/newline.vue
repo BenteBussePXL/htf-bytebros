@@ -35,7 +35,11 @@ const commandOutputs = {
       - status: Displays the current system status
       - exit: Exits the shell
       - clear: Clears the terminal screen
-      - decodeMorse <Code>: Decodes the morse code
+      - decodeMorse <Code>: Decodes the morse code to text
+      - decodeBase64 <Base64>: Decodes Base64 to text
+      - stringToHexDec <text>: Converts a string to Hexadecimal
+      - decodeCaesar <text>: Decodes the given text with Caesar Cypher
+            -s: sets the shift of the Caesar Cypher
       - isDisarium <input>: Checks if input is a disarium
       - perfectnumber <number> <nth>: checks if input is a perfect number
       - getDays <month> <year>: gets the first and last day of the month
@@ -46,6 +50,7 @@ const commandOutputs = {
     clear: null,
     callBackup: ' ',
     decodeMorse: ' ',
+    decodeBase64: ' ',
     isDisarium: '',
     perfectNumber: '',
     getDays: '',
@@ -108,13 +113,98 @@ const onEnterPress = async () => {
             }
         }
         return str.toString().toUpperCase();
-    }`
-            },
+    }` 
+},
             { text: '', output: "Running process..." }, // No label for subsequent lines
             { text: '', output: decoded }
         ];
 
         await runMultiLineCommand(backupLines);
+    }
+
+  else if (enteredCommand.includes('decodeBase64')) {
+    let getValue = enteredCommand.split(' ');
+    let decoded = await store.decodeBase64(getValue[1]);
+
+    const backupLines = [
+      { text: `${label} ${enteredCommand}`, output: "" },
+      { text: '', output: "The code i will be using" },
+      {
+        text: '', output: `public String decodeBase64ToString(DecodeBase64ToStringRequest decodeBase64ToStringRequest){
+        String encodedString = decodeBase64ToStringRequest.encodedString();
+
+        // Decode data
+        byte[] valueDecoded = Base64.getDecoder().decode(encodedString);
+        return Arrays.toString(valueDecoded);
+    }`
+      },
+      { text: '', output: "Running process..." }, // No label for subsequent lines
+      { text: '', output: decoded.toString().replaceAll(",", " ") }
+    ];
+
+    await runMultiLineCommand(backupLines);
+  }
+
+    else if (enteredCommand.includes('stringToHexDec')) {
+      let getValue = enteredCommand.split(' ');
+      let decoded = await store.convertToHexDec(getValue[1]);
+
+      const backupLines = [
+        { text: `${label} ${enteredCommand}`, output: "" },
+        { text: '', output: "The code i will be using" },
+        {
+          text: '', output: `public String convertStringToHexDec(ConvertStringToHexDecRequest convertStringToHexDecRequest) {
+        String stringCode = convertStringToHexDecRequest.stringCode();
+        StringBuilder hexDecBuilder = new StringBuilder();
+
+        for (char c : stringCode.toCharArray()) {
+            hexDecBuilder.append(String.format("%02x", (int) c));
+            hexDecBuilder.append(" ");
+        }
+
+        return hexDecBuilder.toString();
+    }`
+        },
+        { text: '', output: "Running process..." }, // No label for subsequent lines
+        { text: '', output: decoded }
+      ];
+
+      await runMultiLineCommand(backupLines);
+    }
+
+    else if (enteredCommand.includes('decodeCaesar')) {
+      let getValue = enteredCommand.split(' ');
+      let decoded = await store.decryptCaesarCipher(getValue[3], getValue[1]);
+
+      const backupLines = [
+        { text: `${label} ${enteredCommand}`, output: "" },
+        { text: '', output: "The code i will be using" },
+        {
+          text: '', output: `public String decryptCaesarCypher(DecryptCaesarCypherRequest decryptCaesarCypherRequest) {
+        int shift = decryptCaesarCypherRequest.shift();
+        String text = decryptCaesarCypherRequest.text();
+        StringBuilder result = new StringBuilder();
+
+        for (char ch : text.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                // Handle lowercase letters
+                char base = 'a';
+                char decryptedChar = (char) ((ch - base - shift + 26) % 26 + base);
+                result.append(decryptedChar);
+            } else {
+                // Non-alphabetic characters remain unchanged
+                result.append(ch);
+            }
+        }
+
+        return result.toString();
+    }`
+        },
+        { text: '', output: "Running process..." }, // No label for subsequent lines
+        { text: '', output: decoded }
+      ];
+
+      await runMultiLineCommand(backupLines);
     }
 
     else if (enteredCommand.includes('isDisarium')) {

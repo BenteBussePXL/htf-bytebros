@@ -58,8 +58,7 @@ public class NavService {
 
         for (char ch : text.toCharArray()) {
             if (Character.isLetter(ch)) {
-                // Handle lowercase letters
-                char base = 'a';
+                char base = Character.isUpperCase(ch) ? 'A' : 'a';
                 char decryptedChar = (char) ((ch - base - shift + 26) % 26 + base);
                 result.append(decryptedChar);
             } else {
