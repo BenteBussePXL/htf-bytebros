@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/command")
-public class TerminalController {
+public class    TerminalController {
     private final AlienEncService alienEncService;
     private final HabConService habConService;
     private final NavService navService;
