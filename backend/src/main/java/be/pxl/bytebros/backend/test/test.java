@@ -5,12 +5,28 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        String stringCode = "PbBHIXQyyqdHmwqjDzp";
-        StringBuilder hexBuilder = new StringBuilder();
+        String morseCode = "--. ...- .--- --- .-.. -..- - --.- .-- --- ..- ..-";
+        char[] abc = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+                'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                ',', '.', '?'};
 
-        for (char ch : stringCode.toCharArray()) {
-            hexBuilder.append(String.format("%02X", (int) ch)).append(" ");
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+                ".---", "-.-", ".-..", "--", "-.", "---", ".---.", "--.-", ".-.",
+                "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", ".----",
+                "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----.",
+                "-----", "--..--", ".-.-.-", "..--.."};
+
+        String[] chars = morseCode.split(" ");
+        String str = "";
+
+        for (int i = 0; i < chars.length; i++) {
+            for (int j = 0; j < morse.length; j++) {
+                if (morse[j].equals(chars[i])) {
+                    str = str + abc[j] + " ";
+                }
+            }
         }
-        System.out.println(hexBuilder.toString().trim().toLowerCase());
+        System.out.println(str.trim().toUpperCase());
     }
 }
